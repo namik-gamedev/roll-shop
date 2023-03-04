@@ -11,7 +11,12 @@ const CartForm = ({ submitPurchase }) => {
    const [addressError, setAdressError] = useState(false)
 
    useEffect(() => {
-      if (phone === '' || phone.match(/[a-z]/) || phone.match(/[а-яА-ЯЁё]/)) {
+      if (
+         phone === '' ||
+         phone.match(/[a-zA-Z]/) ||
+         phone.match(/[а-яА-ЯЁё]/) ||
+         phone.match(/[/.*,^`~:;]/)
+      ) {
          setPhoneError(true)
       } else {
          setPhoneError(false)
