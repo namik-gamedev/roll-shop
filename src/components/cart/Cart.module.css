@@ -1,0 +1,15 @@
+.cart {
+   grid-row: 2;
+   grid-column: 2;
+}
+
+.cart__title {
+   margin-bottom: 20px;
+}
+
+@media (max-width: 940px) {
+   .cart {
+      grid-row: 3;
+      grid-column: 1;
+   }
+}

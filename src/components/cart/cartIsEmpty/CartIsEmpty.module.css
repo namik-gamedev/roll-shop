@@ -1,0 +1,9 @@
+.cartIsEmpty {
+   font-size: var(--text-size);
+   background: #cfcfcf;
+   padding: 8px;
+   border-radius: 10px;
+   text-align: center;
+
+   font-size: var(--text-size);
+}

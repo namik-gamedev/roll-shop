@@ -1,0 +1,14 @@
+.headerLogo {
+   display: flex;
+   align-items: center;
+   gap: 20px;
+}
+
+.headerLogo__img {
+   width: 90px;
+}
+
+.headerLogo__title {
+   font-size: 30px;
+   font-weight: 500;
+}

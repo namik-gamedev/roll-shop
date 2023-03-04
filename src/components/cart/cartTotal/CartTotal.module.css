@@ -1,0 +1,11 @@
+.cartTotal {
+   margin-top: 20px;
+
+   font-size: 23px;
+   display: flex;
+   justify-content: center;
+
+   background: #d0d0d0;
+   padding: 8px;
+   border-radius: 50px;
+}

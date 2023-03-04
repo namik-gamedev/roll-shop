@@ -1,0 +1,14 @@
+.SuccessPurchase {
+   width: 100vw;
+   height: 100vh;
+   display: grid;
+   place-content: center;
+   place-items: center;
+}
+
+.SuccessPurchase h2 {
+   margin-bottom: 30px;
+
+   font-size: 50px;
+   font-weight: 400;
+}

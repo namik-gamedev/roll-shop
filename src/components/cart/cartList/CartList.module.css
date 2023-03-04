@@ -1,0 +1,29 @@
+.cartList {
+   display: grid;
+   grid-template-columns: repeat(2, 1fr);
+   gap: 20px;
+}
+
+@media (max-width: 1620px) {
+   .cartList {
+      grid-template-columns: 1fr;
+   }
+}
+
+@media (max-width: 940px) {
+   .cartList {
+      grid-template-columns: repeat(3, 1fr);
+   }
+}
+
+@media (max-width: 770px) {
+   .cartList {
+      grid-template-columns: repeat(2, 1fr);
+   }
+}
+
+@media (max-width: 530px) {
+   .cartList {
+      grid-template-columns: 1fr;
+   }
+}
