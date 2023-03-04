@@ -36,7 +36,7 @@ const CartForm = ({ submitPurchase }) => {
          <CartFormInputBlock
             type='text'
             label='Номер телефона'
-            placeholder='+7 (999)-999-99-99'
+            placeholder='+7(999)-999-99-99'
             name='phone'
             inputValue={!phone.startsWith(' ') ? phone : ''}
             onChange={(e) => setPhone(e.target.value)}
