@@ -38,8 +38,8 @@ const CartForm = ({ submitPurchase }) => {
             label='Номер телефона'
             placeholder='+7(999)-999-99-99'
             name='phone'
-            inputValue={!phone.startsWith(' ') ? phone : ''}
-            onChange={(e) => setPhone(e.target.value)}
+            inputValue={phone}
+            onChange={(e) => !e.target.value.startsWith(' ') && setPhone(e.target.value)}
          />
          {phoneError && <p className={cl.cartForm__error}>Недопустимое значение</p>}
          <CartFormInputBlock
@@ -47,8 +47,8 @@ const CartForm = ({ submitPurchase }) => {
             label='Адрес доставки'
             placeholder='Город Х ул. Х дом Х'
             name='address'
-            inputValue={!address.startsWith(' ') ? address : ''}
-            onChange={(e) => setAddress(e.target.value)}
+            inputValue={address}
+            onChange={(e) => !e.target.value.startsWith(' ') && setAddress(e.target.value)}
          />
          {addressError && <p className={cl.cartForm__error}>Недопустимое значение</p>}
          {!(phoneError || addressError) && (
