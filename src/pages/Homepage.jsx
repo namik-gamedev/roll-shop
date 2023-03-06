@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React, { createContext, useState } from 'react'
 import Cart from '../components/cart/Cart'
 import Header from '../components/header/Header'
 import Rolls from '../components/rolls/Rolls'
 import '../styles/Homepage.css'
+
+export const IncDecContext = createContext()
 
 const Homepage = () => {
    const [cartItems, setCartItems] = useState([])
@@ -40,18 +42,15 @@ const Homepage = () => {
    }
 
    return (
-      <div className='Homepage'>
-         <div className='container'>
-            <Header />
-            <Rolls addToCart={addToCart} />
-            <Cart
-               incrementItemCount={incrementItemCount}
-               decrementItemCount={decrementItemCount}
-               cartItems={cartItems}
-               cartIsEmpty={cartIsEmpty}
-            />
+      <IncDecContext.Provider value={{ inc: incrementItemCount, dec: decrementItemCount }}>
+         <div className='Homepage'>
+            <div className='container'>
+               <Header />
+               <Rolls addToCart={addToCart} />
+               <Cart cartItems={cartItems} cartIsEmpty={cartIsEmpty} />
+            </div>
          </div>
-      </div>
+      </IncDecContext.Provider>
    )
 }
 

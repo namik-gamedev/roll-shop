@@ -1,14 +1,17 @@
-import React from 'react'
+import React, { createContext, useContext, useState } from 'react'
+import { IncDecContext } from '../../../pages/Homepage'
 import CartItem from './cartItem/CartItem'
 import cl from './CartList.module.css'
 
-const CartList = ({ cartItems, incrementItemCount, decrementItemCount }) => {
+const CartList = ({ cartItems }) => {
+   const incDecContext = useContext(IncDecContext)
+
    return (
       <div className={cl.cartList}>
          {cartItems.map((item, index) => (
             <CartItem
-               incrementItemCount={incrementItemCount}
-               decrementItemCount={decrementItemCount}
+               incrementItemCount={incDecContext.inc}
+               decrementItemCount={incDecContext.dec}
                key={index}
                data={item}
             />
