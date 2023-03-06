@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, useEffect, useReducer, useState } from 'react'
 import Cart from '../components/cart/Cart'
 import Header from '../components/header/Header'
 import Rolls from '../components/rolls/Rolls'
@@ -6,40 +6,70 @@ import '../styles/Homepage.css'
 
 export const IncDecContext = createContext()
 
-const Homepage = () => {
-   const [cartItems, setCartItems] = useState([])
-   const [cartIsEmpty, setCartIsEmpty] = useState(true)
-
-   function addToCart(item) {
-      const existingItem = cartItems.find((i) => i.title === item.title)
+const itemsReducer = (state, action) => {
+   function add(item) {
+      const existingItem = state.find((i) => i.title === item.title)
       if (existingItem) {
-         incrementItemCount(existingItem)
+         return increment(existingItem)
       } else {
          item.id = Date.now()
-         setCartItems([...cartItems, item])
-         setCartIsEmpty(false)
+         return [...state, item]
       }
    }
 
-   function incrementItemCount(item) {
-      const newCartItems = cartItems
+   function increment(item) {
+      const newCartItems = [...state]
       const targetItem = newCartItems.find((i) => i.id === item.id)
       targetItem.count++
       targetItem.totalPrice += targetItem.price
-      setCartItems([...newCartItems])
+      return newCartItems
    }
 
-   function decrementItemCount(item) {
-      const newCartItems = cartItems
+   function decrement(item) {
+      console.log(item)
+      const newCartItems = [...state]
       const targetIndex = newCartItems.findIndex((i) => i.id === item.id)
       const targetItem = newCartItems[targetIndex]
       item.count > 1 ? (item.count -= 1) : newCartItems.splice(targetIndex, 1)
-      if (newCartItems.length === 0) {
-         setCartIsEmpty(true)
-      }
       targetItem.totalPrice -= targetItem.price
-      setCartItems([...newCartItems])
+      return newCartItems
    }
+
+   switch (action.type) {
+      case 'add':
+         return add(action.value)
+      case 'increment':
+         return increment(action.value)
+      case 'decrement':
+         console.log(1)
+         return decrement(action.value)
+      default:
+         console.log(state)
+         return state
+   }
+}
+
+const Homepage = () => {
+   const [cartItems, setCartItems] = useReducer(itemsReducer, [])
+   const [cartIsEmpty, setCartIsEmpty] = useState(true)
+
+   const addToCart = (item) => {
+      setCartItems({ type: 'add', value: item })
+   }
+   const incrementItemCount = (item) => {
+      setCartItems({ type: 'increment', value: item })
+   }
+   const decrementItemCount = (item) => {
+      setCartItems({ type: 'decrement', value: item })
+   }
+
+   useEffect(() => {
+      if (cartItems.length === 0) {
+         setCartIsEmpty(true)
+      } else {
+         setCartIsEmpty(false)
+      }
+   }, [cartItems])
 
    return (
       <IncDecContext.Provider value={{ inc: incrementItemCount, dec: decrementItemCount }}>
