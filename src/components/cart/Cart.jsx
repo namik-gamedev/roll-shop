@@ -5,7 +5,7 @@ import CartIsEmpty from './cartIsEmpty/CartIsEmpty'
 import CartList from './cartList/CartList'
 import CartTotal from './cartTotal/CartTotal'
 
-const Cart = ({ cartIsEmpty, cartItems, incrementItemCount, decrementItemCount }) => {
+const Cart = ({ cartIsEmpty, cartItems }) => {
    function getTotal() {
       return cartItems.reduce((total, item) => total + item.totalPrice, 0)
    }
@@ -15,11 +15,7 @@ const Cart = ({ cartIsEmpty, cartItems, incrementItemCount, decrementItemCount }
          <h2 className={`${cl.cart__title} title`}>Ваша корзина</h2>
          {cartIsEmpty && <CartIsEmpty />}
          {/* Реализация списка товаров в корзине */}
-         <CartList
-            incrementItemCount={incrementItemCount}
-            decrementItemCount={decrementItemCount}
-            cartItems={cartItems}
-         />
+         <CartList cartItems={cartItems} />
          {!cartIsEmpty && <CartTotal total={getTotal()} />}
          {!cartIsEmpty && <CartForm />}
       </div>

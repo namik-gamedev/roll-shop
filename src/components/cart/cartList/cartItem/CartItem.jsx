@@ -1,5 +1,4 @@
 import React from 'react'
-import Button from '../../../UI/button/Button'
 import cl from './CartItem.module.css'
 import CartItemButton from './cartItemButton/CartItemButton'
 
@@ -7,16 +6,12 @@ const CartItem = ({ data, incrementItemCount, decrementItemCount }) => {
    return (
       <div className={cl.cartItem}>
          <div className={cl.cartItem__top}>
-            {' '}
             <img className={cl.cartItem__img} src={data.imgSrc} alt='' />
             <h3 className={cl.cartItem__title}>
                {data.title} <br /> <span>(8шт./сет)</span>
             </h3>
          </div>
 
-         {/* <Button onClick={(e) => addToCart(data)} className={cl.cartItem__price}>
-            {data.price} ₽
-         </Button> */}
          <div className={cl.cartItem__bottom}>
             <CartItemButton
                onClick={(e) => decrementItemCount(data)}
