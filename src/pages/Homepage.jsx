@@ -26,7 +26,6 @@ const itemsReducer = (state, action) => {
    }
 
    function decrement(item) {
-      console.log(item)
       const newCartItems = [...state]
       const targetIndex = newCartItems.findIndex((i) => i.id === item.id)
       const targetItem = newCartItems[targetIndex]
