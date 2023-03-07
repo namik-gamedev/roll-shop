@@ -26,7 +26,6 @@ const itemsReducer = (state, action) => {
    }
 
    function decrement(item) {
-      console.log(item)
       const newCartItems = [...state]
       const targetIndex = newCartItems.findIndex((i) => i.id === item.id)
       const targetItem = newCartItems[targetIndex]
@@ -53,16 +52,6 @@ const Homepage = () => {
    const [cartItems, setCartItems] = useReducer(itemsReducer, [])
    const [cartIsEmpty, setCartIsEmpty] = useState(true)
 
-   const addToCart = (item) => {
-      setCartItems({ type: 'add', value: item })
-   }
-   const incrementItemCount = (item) => {
-      setCartItems({ type: 'increment', value: item })
-   }
-   const decrementItemCount = (item) => {
-      setCartItems({ type: 'decrement', value: item })
-   }
-
    useEffect(() => {
       if (cartItems.length === 0) {
          setCartIsEmpty(true)
@@ -72,11 +61,16 @@ const Homepage = () => {
    }, [cartItems])
 
    return (
-      <IncDecContext.Provider value={{ inc: incrementItemCount, dec: decrementItemCount }}>
+      <IncDecContext.Provider
+         value={{
+            inc: (item) => setCartItems({ type: 'increment', value: item }),
+            dec: (item) => setCartItems({ type: 'decrement', value: item }),
+         }}
+      >
          <div className='Homepage'>
             <div className='container'>
                <Header />
-               <Rolls addToCart={addToCart} />
+               <Rolls addToCart={(item) => setCartItems({ type: 'add', value: item })} />
                <Cart cartItems={cartItems} cartIsEmpty={cartIsEmpty} />
             </div>
          </div>

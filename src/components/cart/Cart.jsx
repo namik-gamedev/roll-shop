@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import cl from './Cart.module.css'
 import CartForm from './cartForm/CartForm'
 import CartIsEmpty from './cartIsEmpty/CartIsEmpty'
