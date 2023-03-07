@@ -1,5 +1,4 @@
 import React from 'react'
-import Button from '../../UI/button/Button'
 import cl from './RollItem.module.css'
 
 const RollItem = ({ data, addToCart }) => {
