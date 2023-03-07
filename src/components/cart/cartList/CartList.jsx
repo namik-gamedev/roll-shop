@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import { IncDecContext } from '../../../pages/Homepage'
 import CartItem from './cartItem/CartItem'
 import cl from './CartList.module.css'

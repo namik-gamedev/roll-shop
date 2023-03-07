@@ -2,7 +2,7 @@ import React from 'react'
 import './styles/App.css'
 import Homepage from './pages/Homepage'
 import SuccessPurchase from './pages/SuccessPurchase'
-import { Routes, Route, Link } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 
 const App = () => {
    return (
